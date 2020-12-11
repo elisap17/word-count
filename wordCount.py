@@ -11,10 +11,13 @@ sc = SparkContext(conf = sparkConf)
 # Lecture du fichier "sample"
 texte = sc.textFile("sample.txt")
 
+# 1) Decoupage du texte par mots
+# 2) Creation des tuples (mot, comptage)
+# 3) Regroupement des mots en additionnant les valeurs de chaque mot
 rdd_counts = texte \
-    .flatMap(lambda line: line.split(" ")) \ # Decoupage du texte par mots
-    .map(lambda word: (word,1)) \ # Creation des tuples (mot, comptage)
-    .reduceByKey(add) # Regroupement des mots en additionnant les valeurs de chaque mot
+    .flatMap(lambda line: line.split(" ")) \
+    .map(lambda word: (word,1)) \
+    .reduceByKey(add)
 
 counts = rdd_counts.collect() # Execution des fonctions au dessus
 
