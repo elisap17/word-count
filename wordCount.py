@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sys
 from operator import add 
 from pyspark import SparkContext, SparkConf
